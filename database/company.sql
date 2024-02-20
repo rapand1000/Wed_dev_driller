@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users(
     user_pk                 TEXT,
     user_name               TEXT,
+    user_lastname           TEXT,
     user_name_updated_at         TEXT,
     user_deleted            TEXT,
     user_deleted_at         TEXT,
@@ -76,6 +77,18 @@ BEGIN
 END;
 
 
+
+-- SEED
+INSERT INTO users VALUES("1", "One", "0");
+INSERT INTO users VALUES("2", "Two", "0");
+INSERT INTO users VALUES("3", "Three", "0");
+INSERT INTO users VALUES("4", "Four", "0");
+
+
+UPDATE users SET user_name = "Santiago" WHERE user_pk = "1" ;
+
+
+
 SELECT * FROM users;
 
 
@@ -95,7 +108,6 @@ INSERT INTO phones VALUES("1", "112");
 INSERT INTO phones VALUES("3", "333");
 
 SELECT * FROM phones;
-
 
 
 -- DELETE FROM users WHERE user_pk = "1";
@@ -120,24 +132,26 @@ DELETE FROM users WHERE user_pk = "1";
 -- INSERT UPDATE DELETE
 
 
-
-
-
 -- CREATE TRIGGER update_customer_address UPDATE OF address ON customers 
 -- BEGIN
 --     UPDATE orders SET address = new.address WHERE customer_name = old.name;
 -- END;
 
 
+DROP TABLE IF EXISTS items;
 
+CREATE TABLE items(
+    item_id     TEXT,
+    item_title  TEXT,
+    item_price  NUMERIC,
+    PRIMARY KEY(item_id)
+) WITHOUT ROWID;
 
+INSERT INTO items VALUES("1", "One", 10.10);
+INSERT INTO items VALUES("2", "Two", 20.20);
+INSERT INTO items VALUES("3", "Three", 30.30);
 
-
-
-
-
-
-
+SELECT * FROM items;
 
 
 

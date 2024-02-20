@@ -1,20 +1,19 @@
 from bottle import get, template
-
+import x
 
 ##############################  
 @get("/items")
 def _():
     try:
-        box = [] # list and it is empty
-        for i in range(1, 101):
-            box.append(i)
-        print(box)    
-        return template("items", box=box)   
+        db = x.db()
+        q = db.execute("SELECT * FROM items")
+        items = q.fetchall()
+        print(items)
+        return template("items", items=items)
     except Exception as ex:
         print(ex)
-        return "error"
     finally:
-        pass
+        if "db" in locals(): db.close()
 
 
 

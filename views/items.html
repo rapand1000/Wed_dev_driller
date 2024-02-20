@@ -1,17 +1,34 @@
 % include("_header.html", title="Items")
 
 
+<form id="frm">
+    <label for="">Item name (2 to 20 characters)</label>
+    <input name="item_name" type="text" mix-check=".{2,25}">
+    <button mix-post="/items" mix-data="#frm">
+        Create item
+    </button>
+</form>
+
+
+
 <div id="items"
 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
 gap-4 px-4 pt-8"
 >
 
-    % for number in box:
-        <a href="/items/{{number}}"
-        class="flex items-center justify-center border border-gray-700 h-24"
-        >
-            {{number}} 🗑️
-        </a>
+
+    % for item in items:
+        <div id="item_{{ item['item_id'] }}">
+            <a href="/items/{{item['item_id']}}"
+            class="flex items-center justify-center border border-gray-700 h-24"
+            >
+                {{ item['item_title'] }}
+            </a>
+
+            <button mix-delete="/items/{{ item['item_id'] }}">
+                🗑️
+            </button>
+        </div>
     % end
 
 
