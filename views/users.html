@@ -19,10 +19,10 @@
 
 <form id="frm">
     <label for="user_name">Username:</label>
-    <input type="text" name="user_name" id="user_name"/><br/>
+    <input type="text" name="user_name" id="user_name" placeholder="First name here"/><br/>
     <label for="user_lastname"></label>
-    <input type="text" name="user_lastname" id="user_lastname"/><br/>
-    <button mix-post"/users" mix-data="#frm">
+    <input type="text" name="user_lastname" id="user_lastname" placeholder="Last name here"/><br/>
+    <button mix-post="/users" mix-data="#frm">
         Add User
     </button><br/>
 
@@ -33,8 +33,6 @@
 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
 gap-4 px-4 pt-8"
 >
-
-
 
 
     % for user in users:

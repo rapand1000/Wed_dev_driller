@@ -18,17 +18,17 @@ CREATE TABLE users(
     user_pk                 TEXT,
     user_name               TEXT,
     user_lastname           TEXT,
-    user_name_updated_at         TEXT,
+    user_name_updated_at    TEXT,
     user_deleted            TEXT,
     user_deleted_at         TEXT,
     PRIMARY KEY(user_pk)
 ) WITHOUT ROWID;
 
 -- SEED
-INSERT INTO users VALUES("1", "One", "0", "0", "0");
-INSERT INTO users VALUES("2", "Two", "0", "0", "0");
-INSERT INTO users VALUES("3", "Three", "0", "0", "0");
-INSERT INTO users VALUES("4", "Four", "0", "0", "0");
+INSERT INTO users VALUES("1", "One", "0", "0", "0", "0");
+INSERT INTO users VALUES("2", "Two", "0", "0", "0", "0");
+INSERT INTO users VALUES("3", "Three", "0", "0", "0", "0");
+INSERT INTO users VALUES("4", "Four", "0", "0", "0", "0");
 
 SELECT * FROM users;
 
