@@ -10,7 +10,8 @@ def _():
         users = sql.fetchall()
         return template("users", users=users)   
     except Exception as ex:
+        print("XXXXXXXXXXXX")
         print(ex)
-        return "error"
+        print("XXXXXXXXXXXX")
     finally:
         if "db" in locals(): db.close()

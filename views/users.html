@@ -1,22 +1,58 @@
 % include("_header.html", title="Users")
 
 
+<!-- <script>
+    // Log information to the console
+    console.log("Hello, console!");
+    console.info("This is an informational message.");
+    console.warn("This is a warning message.");
+    console.error("This is an error message.");
+
+    // You can also log variables or objects
+    let myVar = 42;
+    console.log("The value of myVar is:", myVar);
+
+    let myObj = { name: "John", age: 30 };
+    console.log("My object:", myObj);
+</script> -->
+
+
+<form id="frm">
+    <label for="user_name">Username:</label>
+    <input type="text" name="user_name" id="user_name"/><br/>
+    <label for="user_lastname"></label>
+    <input type="text" name="user_lastname" id="user_lastname"/><br/>
+    <button mix-post"/users" mix-data="#frm">
+        Add User
+    </button><br/>
+
+</form>
+
+
 <div id="users"
 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
 gap-4 px-4 pt-8"
 >
 
+
+
+
     % for user in users:
-        <div
-        class="relative flex flex-col items-center justify-center 
-        bg-neutral-200 border border-gray-400 h-24 rounded-md"
-        >
+        <div id="user_{{ user['user_pk'] }}">
+            <a href="/users/{{user['user_pk']}}"
+            class="relative flex flex-col items-center justify-center bg-neutral-200 border border-gray-400 h-24 rounded-md"
+            >
             <p class="">
                 {{ user["user_name"] }}
             </p>
-            <a href="/delete-user/{{user['user_pk']}}" class="absolute bottom-1 right-1">
-                🗑️
+            <a href="/delete-user/{{user['user_pk']}}" 
+            class="absolute bottom-1 right-1"
+            >
+                {{ user['user_name']}}
             </a>
+            <button mix-delete="delete-user/{{user['user_pk']}}">
+                🗑️
+            </button>
         </div>
     % end
 
