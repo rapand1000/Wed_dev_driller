@@ -1,6 +1,10 @@
 PRAGMA foreign_keys = ON;
 
 DROP TABLE IF EXISTS counter;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS phones;
+
+DROP TABLE IF EXISTS counter;
 CREATE TABLE counter(
     total_users     INTEGER DEFAULT 0
 );
@@ -13,26 +17,56 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users(
     user_pk                 TEXT,
     user_name               TEXT,
-    user_updated_at         TEXT,
+    user_name_updated_at         TEXT,
+    user_deleted            TEXT,
+    user_deleted_at         TEXT,
     PRIMARY KEY(user_pk)
 ) WITHOUT ROWID;
 
+-- SEED
+INSERT INTO users VALUES("1", "One", "0", "0", "0");
+INSERT INTO users VALUES("2", "Two", "0", "0", "0");
+INSERT INTO users VALUES("3", "Three", "0", "0", "0");
+INSERT INTO users VALUES("4", "Four", "0", "0", "0");
+
+SELECT * FROM users;
 
 -- Only index if there is a search on that column
 CREATE INDEX index_user_name ON users(user_name);
 
 
 -- Trigger to update a user on update_at
-CREATE TRIGGER IF NOT EXISTS trigger_update_user AFTER UPDATE ON users
+CREATE TRIGGER IF NOT EXISTS trigger_update_user_name AFTER UPDATE OF user_name ON users
 BEGIN
     UPDATE users 
-    SET user_updated_at = "Wed 14 Feb 2024"
+    SET user_name_updated_at = "Wed 14 Feb 2024"
     WHERE user_pk = OLD.user_pk;
 END;
+
+UPDATE users SET user_name = "Santiago" WHERE user_pk = "1" ;
+
+
+CREATE TRIGGER IF NOT EXISTS trigger_user_soft_deleted_at AFTER UPDATE OF user_deleted ON users
+    BEGIN
+        UPDATE users
+        SET user_deleted_at = strftime('%Y-%m-%d %H:%M:%S', 'now') --- did not work ??? DATETIME(DATE('now'), 'localtime')
+        WHERE user_pk = OLD.user_pk;
+    END;
+
+UPDATE users SET user_deleted = "1" WHERE user_pk = 4;
+
+
+--##### husk her til at vise resultat ###
+SELECT * FROM users;
+
 
 -- CREATE A TRIGGER THAT SETS THE "user_deleted_at" to the actual data
 -- whenever a user is deleted. You are doing a soft delete
 -- DO YOU REALLY NEED A TRIGGER FOR A SOFT DELETE, OR IT IS JUST AN UPDATE??????????
+
+
+
+
 
 
 CREATE TRIGGER IF NOT EXISTS trigger_update_total_users 
@@ -42,19 +76,8 @@ BEGIN
 END;
 
 
-
--- SEED
-INSERT INTO users VALUES("1", "One", "0");
-INSERT INTO users VALUES("2", "Two", "0");
-INSERT INTO users VALUES("3", "Three", "0");
-INSERT INTO users VALUES("4", "Four", "0");
-
-
-UPDATE users SET user_name = "Santiago" WHERE user_pk = "1" ;
-
-
-
 SELECT * FROM users;
+
 
 
 DROP TABLE IF EXISTS phones;
