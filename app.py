@@ -20,6 +20,8 @@ def _():
     return static_file("mixhtml.js", ".")
 
 ##############################
+print("xxxxxxxxxxxxx  APP.py")
+
 import routes.get_users
 import routes.delete_user
 import routes.create_user

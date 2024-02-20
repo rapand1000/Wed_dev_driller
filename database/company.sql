@@ -44,7 +44,7 @@ BEGIN
     WHERE user_pk = OLD.user_pk;
 END;
 
-UPDATE users SET user_name = "Santiago" WHERE user_pk = "1" ;
+-- UPDATE users SET user_name = "Santiago" WHERE user_pk = "1" ;
 
 
 CREATE TRIGGER IF NOT EXISTS trigger_user_soft_deleted_at AFTER UPDATE OF user_deleted ON users
@@ -54,7 +54,7 @@ CREATE TRIGGER IF NOT EXISTS trigger_user_soft_deleted_at AFTER UPDATE OF user_d
         WHERE user_pk = OLD.user_pk;
     END;
 
-UPDATE users SET user_deleted = "1" WHERE user_pk = 4;
+-- UPDATE users SET user_deleted = "1" WHERE user_pk = 4;
 
 
 --##### husk her til at vise resultat ###
@@ -78,14 +78,14 @@ END;
 
 
 
--- SEED
-INSERT INTO users VALUES("1", "One", "0");
-INSERT INTO users VALUES("2", "Two", "0");
-INSERT INTO users VALUES("3", "Three", "0");
-INSERT INTO users VALUES("4", "Four", "0");
+-- -- SEED
+-- INSERT INTO users VALUES("1", "One", "0");
+-- INSERT INTO users VALUES("2", "Two", "0");
+-- INSERT INTO users VALUES("3", "Three", "0");
+-- INSERT INTO users VALUES("4", "Four", "0");
 
 
-UPDATE users SET user_name = "Santiago" WHERE user_pk = "1" ;
+-- UPDATE users SET user_name = "Santiago" WHERE user_pk = "1" ;
 
 
 

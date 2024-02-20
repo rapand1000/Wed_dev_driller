@@ -36,22 +36,23 @@ gap-4 px-4 pt-8"
 
 
     % for user in users:
-        <div id="user_{{ user['user_pk'] }}">
-            <a href="/users/{{user['user_pk']}}"
+        <a
+            id="user_{{ user['user_pk'] }}"
+            href="/users/{{user['user_pk']}}"
             class="relative flex flex-col items-center justify-center bg-neutral-200 border border-gray-400 h-24 rounded-md"
-            >
-            <p class="">
+        >
+            <p class="text-center">
                 {{ user["user_name"] }}
             </p>
-            <a href="/delete-user/{{user['user_pk']}}" 
+            <!-- <a href="/delete-user/{{user['user_pk']}}" 
             class="absolute bottom-1 right-1"
             >
                 {{ user['user_name']}}
-            </a>
-            <button mix-delete="delete-user/{{user['user_pk']}}">
+            </a> -->
+            <button class="delete-btn absolute bottom-1 right-1" mix-delete="/user/{{user['user_pk']}}">
                 🗑️
             </button>
-        </div>
+        </a>
     % end
 
 
