@@ -33,27 +33,23 @@
 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
 gap-4 px-4 pt-8"
 >
-
-
-    % for user in users:
-        <a
-            id="user_{{ user['user_pk'] }}"
-            href="/users/{{user['user_pk']}}"
-            class="relative flex flex-col items-center justify-center bg-neutral-200 border border-gray-400 h-24 rounded-md"
-        >
-            <p class="text-center">
-                {{ user["user_name"] }}
-            </p>
-            <!-- <a href="/delete-user/{{user['user_pk']}}" 
-            class="absolute bottom-1 right-1"
-            >
-                {{ user['user_name']}}
-            </a> -->
-            <button class="delete-btn absolute bottom-1 right-1" mix-delete="/user/{{user['user_pk']}}">
-                🗑️
-            </button>
-        </a>
-    % end
+%for user in users:
+<a
+    id="user_{{user['user_pk'] }}"
+    href="/user/{{user['user_pk']}}"
+    class="relative flex items-center justify-center border border-black h-24 bg-white rounded-md"
+>
+    <p class="text-center">
+        {{ user["user_name"] }} {{ user["user_lastname"] }}
+    </p>
+    <button
+        class="delete-btn absolute bottom-1 right-1"
+        mix-delete="/users/{{ user['user_pk'] }}?user_name={{ user['user_name'] }}"
+    >
+        🗑️
+    </button>
+</a>
+%end
 
 
     

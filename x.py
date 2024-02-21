@@ -38,7 +38,7 @@ def validate_user_name():
 USER_LAST_NAME_MIN = 2
 USER_LAST_NAME_MAX = 20
 
-def validate_user_last_name():
+def validate_user_lastname():
     if len(request.forms.get("user_last_name")) < USER_LAST_NAME_MIN: 
         raise Exception("last name too short")
     if len(request.forms.get("user_last_name")) > USER_LAST_NAME_MAX: 

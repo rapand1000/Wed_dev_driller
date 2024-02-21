@@ -1,0 +1,42 @@
+% include("_header.html", title="user")
+<script>
+    // Define a function to print a message to the console
+    function printToConsole() {
+        console.log("Hello, world!");
+    }
+</script>
+
+<h1>User Details</h1>
+<p>User ID: {{ user['user_pk'] }}</p>
+<p>User Name: {{ user['user_name'] }}</p>    
+
+
+<div
+class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
+gap-4 px-4 pt-8"
+>
+
+<div
+    id="user_{{user['user_pk'] }}"
+    href="/user/{{user['user_pk']}}"
+    class="relative flex items-center justify-center border border-black h-24 bg-white rounded-md"
+>
+    <p class="text-center">
+        {{ user["user_name"] }} {{ user["user_lastname"] }}
+    </p>
+    <button
+        class="delete-btn absolute bottom-1 right-1"
+        mix-delete="/users/{{ user['user_pk'] }}?user_name={{ user['user_name'] }}"
+    >
+        🗑️
+    </button>
+</div>
+
+
+    
+</div>
+
+
+
+% include("_footer.html")
+
