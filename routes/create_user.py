@@ -12,15 +12,15 @@ def _():
         user_lastname = request.forms.get("user_lastname")
         # print("xxxxxx  RETURN HER11")
 
-         # Design by contract between front and back-end
-        # VALIDATION
-        # x.validate_user_name()
-        # x.validate_user_lastname()
+
         # print("xxxxxx  RETURN HER111")
         db =x.db()
         q = db.execute("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?)", (user_id, user_name, user_lastname,"0","0","0"))
         # print("xxxxxx  RETURN HER1111")
-
+         # Design by contract between front and back-end
+        # VALIDATION
+        # x.validate_user_name()
+        # x.validate_user_lastname()
         db.commit()
 
         # Show Hi A Aa

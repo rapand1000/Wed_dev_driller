@@ -1,0 +1,9 @@
+/* Style for user_name input */
+input{
+    /* Add your styles here */
+    padding: 8px;
+    border: 1px solid red;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
