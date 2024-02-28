@@ -8,7 +8,7 @@ import x
 def _():
     try:
         item_name = request.forms.get("item_name")
-        item_id = uuid.uuid4().hex
+        item_id = uuid.uuid4()
         item_price = random.uniform(10.5, 999.99)
         db = x.db()        
         q = db.execute("INSERT INTO items VALUES(?, ?, ?)", (item_id, item_name,item_price))

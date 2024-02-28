@@ -18,17 +18,36 @@ CREATE TABLE users(
     user_pk                 TEXT,
     user_name               TEXT,
     user_lastname           TEXT,
+    user_email              TEXT UNIQUE,
+    user_password           TEXT,
     user_name_updated_at    TEXT,
     user_deleted            TEXT,
     user_deleted_at         TEXT,
     PRIMARY KEY(user_pk)
 ) WITHOUT ROWID;
 
+DROP TABLE IF EXISTS users;
+CREATE TABLE users(
+    user_pk                 TEXT,
+    user_name               TEXT,
+    user_updated_at         TEXT,
+    user_email              TEXT UNIQUE,
+    user_password           TEXT,
+    PRIMARY KEY(user_pk)
+) WITHOUT ROWID;
+
+
 -- SEED
-INSERT INTO users VALUES("1", "One", "0", "0", "0", "0");
-INSERT INTO users VALUES("2", "Two", "0", "0", "0", "0");
-INSERT INTO users VALUES("3", "Three", "0", "0", "0", "0");
-INSERT INTO users VALUES("4", "Four", "0", "0", "0", "0");
+
+INSERT INTO users VALUES("1", "One", "0", "one@one.com", "password");
+INSERT INTO users VALUES("2", "Two", "0", "two@two.com", "password");
+INSERT INTO users VALUES("3", "Three", "0", "three@three.com", "password");
+INSERT INTO users VALUES("4", "Four", "0", "four@four.com", "password");
+
+INSERT INTO users VALUES("1", "One", "0", "one@one.com", "password", "0", "0", "0");
+INSERT INTO users VALUES("2", "Two", "0", "two@two.com", "password", "0", "0", "0");
+INSERT INTO users VALUES("3", "Three", "0", "three@three.com", "password", "0", "0", "0");
+INSERT INTO users VALUES("4", "Four", "0", "four@four.com", "password", "0", "0", "0");
 
 SELECT * FROM users;
 

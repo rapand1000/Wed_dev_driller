@@ -10,12 +10,13 @@ def _():
         user_id =str(uuid.uuid4())
         user_name = request.forms.get("user_name")
         user_lastname = request.forms.get("user_lastname")
+        user_email = request.forms.get("user_email")
         # print("xxxxxx  RETURN HER11")
 
 
         # print("xxxxxx  RETURN HER111")
         db =x.db()
-        q = db.execute("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?)", (user_id, user_name, user_lastname,"0","0","0"))
+        q = db.execute("INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?, ?)", (user_id, user_name, user_lastname, user_email,"password","0","0","0"))
         # print("xxxxxx  RETURN HER1111")
          # Design by contract between front and back-end
         # VALIDATION
