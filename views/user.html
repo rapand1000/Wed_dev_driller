@@ -31,15 +31,27 @@ gap-4 px-4 pt-8"
             console.log("xxxxx setting up input field HER2 xxxxxx");
         }
     </script>
-    <input type="text" id="user_name" name="user_name" value="{{ user['user_name'] }}">
-    <input type="text" id="user_lastname" name="user_lastname" value="{{ user['user_lastname'] }}">
+    <form id="frm" action="/users">
+        <input type="text" id="user_name" name="user_name" value="{{ user['user_name'] }}">
+        <input type="text" id="user_lastname" name="user_lastname" value="{{ user['user_lastname'] }}">
+        <button mix-put="/users/{{ user['user_pk'] }}" mix-data="#frm">
+            update
+        </button>
+    </form>
 
-    <button 
+
+        <!-- <button 
         class="btn"  
         mix-put="/users/{{ user['user_pk'] }}?user_name={{ user['user_name'] }}"
-    >
+        >
         save
-    </button>
+        </button> -->
+
+
+
+    <!-- <form id="frm" action="/items" mix-put mix-data="#frm">
+
+        <form id="frm" mix-put="/items" mix-data="#frm"> -->
 
     <button
         class="delete-btn absolute bottom-1 right-1" 

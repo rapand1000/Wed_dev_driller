@@ -1,22 +1,21 @@
-from bottle import put, request, response
+from bottle import put, request, response,redirect
 import x
 
 ##############################
-@put("/user/<id>")
+@put("/users/<id>")
 def _(id):
+    print("XXXXXXXXXXXXXXX  Update of user HER1   XXXXXXXXXXXXXXX")
+
     try:
         user_name = request.forms.get('user_name')
+        user_lastname = request.forms.get('user_lastname')
         db = x.db()
-        q = db.execute("UPDATE FROM users WHERE item_id = ?", (id,))
+        q = db.execute("UPDATE users SET user_name = ?, user_lastname = ? WHERE user_pk = ?", (user_name, user_lastname, id,))
         db.commit()
-        return f"""
-        <template mix-target="#item_{id}" mix-replace>
-            <div class="bg-red-500" mix-ttl="2000">
-                user  update
-            </div>
-        </template>
-        """
+        redirect("/users")
+    
     except Exception as ex:
         print(ex)
+        print("XXXXXXXXXXXXXXX  Update EX",ex,"    XXXXXXXXXXXXXXX")
     finally:
         if "db" in locals(): db.close()

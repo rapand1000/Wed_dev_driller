@@ -1,4 +1,4 @@
-from bottle import default_app, error, get, redirect, static_file, template
+from bottle import default_app, error, get, redirect, static_file, template, response, request
 import sqlite3 
 import x
 
@@ -26,6 +26,7 @@ import routes.get_users
 import routes.get_user
 import routes.delete_user
 import routes.create_user
+import routes.update_user
 
 import routes.get_items
 import routes.get_item
@@ -36,6 +37,18 @@ import routes.delete_item
 import routes.admin
 import routes.login
 
+
+
+##############################
+@get("/logout") # 127.0.0.1
+def _():
+    response.add_header("Cache-Control", "no cache, no store, must-revalidate")
+    response.add_header("Pragma", "no-cache")
+    response.add_header("Epires",0)
+    response.delete_cookie =("name")
+    response.status = 303
+    response.set_header("Location", "/login")
+    return
 
 
 ##############################
@@ -57,10 +70,6 @@ def _():
 @get("/login")
 def _():
     return template("login.html")
-
-
-
-
 
 
 
